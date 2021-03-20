@@ -1,18 +1,17 @@
 #!/bin/bash
 
-MASTER1_HOSTNAME="k8s-master1"
-MASTER2_HOSTNAME="k8s-master2"
-MASTER3_HOSTNAME="k8s-master3"
-
-WORKER1_HOSTNAME="k8s-worker1"
-WORKER2_HOSTNAME="k8s-worker2"
-WORKER3_HOSTNAME="k8s-worker3"
-WORKER4_HOSTNAME="k8s-worker4"
-WORKER5_HOSTNAME="k8s-worker5"
-
-MASTER_ADDRESS="172.29.156.10"
-
+MASTER1_HOSTNAME=k8s-master1
+MASTER2_HOSTNAME=k8s-master2
+MASTER3_HOSTNAME=k8s-master3
+WORKER1_HOSTNAME=k8s-worker1
+WORKER2_HOSTNAME=k8s-worker2
+WORKER3_HOSTNAME=k8s-worker3
+WORKER4_HOSTNAME=k8s-worker4
+WORKER5_HOSTNAME=k8s-worker5
+MASTER_ADDRESS=172.29.156.10
+MASTER_PORT=9000
 CERT_DIR="../cert"
+
 
 ls cert >/dev/null 2>&1
 if [ $? != 0 ]; then
@@ -25,12 +24,13 @@ if [ $? != 0 ]; then
   exit
 fi
 
+
 echo "---> Generate kubelet kubeconfig"
 for instance in ${MASTER1_HOSTNAME} ${MASTER2_HOSTNAME} ${MASTER3_HOSTNAME} ${WORKER1_HOSTNAME} ${WORKER2_HOSTNAME} ${WORKER3_HOSTNAME} ${WORKER4_HOSTNAME} ${WORKER5_HOSTNAME}; do
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=${CERT_DIR}/kubernetes-ca.pem \
     --embed-certs=true \
-    --server=https://${MASTER_ADDRESS}:9000 \
+    --server=https://${MASTER_ADDRESS}:${MASTER_PORT} \
     --kubeconfig=${instance}.kubeconfig
 
   kubectl config set-credentials system:node:${instance} \
@@ -52,7 +52,7 @@ echo "---> Generate kube-proxy kubeconfig"
 kubectl config set-cluster kubernetes-the-hard-way \
   --certificate-authority=${CERT_DIR}/kubernetes-ca.pem \
   --embed-certs=true \
-  --server=https://${MASTER_ADDRESS}:9000 \
+  --server=https://${MASTER_ADDRESS}:${MASTER_PORT} \
   --kubeconfig=kube-proxy.kubeconfig
 
 kubectl config set-credentials system:kube-proxy \
@@ -133,6 +133,5 @@ kubectl config use-context default --kubeconfig=admin.kubeconfig
 
 
 echo "---> Complete to generate kubeconfig"
-
 
 exit 0

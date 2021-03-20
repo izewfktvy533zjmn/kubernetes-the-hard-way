@@ -7,10 +7,10 @@
   "names": [
     {
       "C": "JP",
-      "L": "Setagaya",
+      "L": "Niigata",
       "O": "system:masters",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Tokyo"
+      "OU": "Raspi-k8s",
+      "ST": "Niigata"
     }
   ]
 }

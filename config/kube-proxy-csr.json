@@ -7,10 +7,10 @@
   "names": [
     {
       "C": "JP",
-      "L": "Setagaya",
-      "O": "system:node-proxier",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Tokyo"
+      "L": "Niigata",
+      "O": "Kubernetes",
+      "OU": "Raspi-k8s",
+      "ST": "Niigata"
     }
   ]
 }

@@ -1,0 +1,19 @@
+[Unit]
+Description=Flanneld overlay address etcd agent
+Documentation=https://github.com/flannel-io/flannel
+
+[Service]
+ExecStart=/usr/local/bin/flanneld \
+  --etcd-endpoints=https://172.29.156.11:2379,https://172.29.156.12:2379,https://172.29.156.13:2379 \
+  --etcd-keyfile=/etc/etcd/kube-etcd-flanneld-client-key.pem \
+  --etcd-certfile=/etc/etcd/kube-etcd-flanneld-client.pem \
+  --etcd-cafile=/etc/etcd/etcd-ca.pem \
+  --healthz-port=9999 \
+  --ip-masq=true \
+  --kube-subnet-mgr=false \
+  --v=2
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
