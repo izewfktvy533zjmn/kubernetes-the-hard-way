@@ -18,11 +18,11 @@ sudo mv etcd-${ETCD_VER}-linux-arm64/etcd* /usr/local/bin/
 rm -rf etcd-${ETCD_VER}-linux-arm64
 rm -f etcd-${ETCD_VER}-linux-arm64.tar.gz
 
-mkdir -p \
+sudo mkdir -p \
     /etc/etcd/ \
     /var/lib/etcd/
 
-chmod 700 /var/lib/etcd
+sudo chmod 700 /var/lib/etcd
 
 
 wget -q --show-progress --https-only --timestamping https://dl.k8s.io/${KUBERNETES_VERSION}/bin/linux/arm64/kube-apiserver
