@@ -33,6 +33,8 @@ for instance in ${MASTER1_HOSTNAME} ${MASTER2_HOSTNAME} ${MASTER3_HOSTNAME}; do
         cert/front-proxy-client-key.pem \
         cert/service-account.pem \
         cert/service-account-key.pem \
+        cert/kube-etcd-flanneld-client.pem \
+        cert/kube-etcd-flanneld-client-key.pem \
         kubeconfig/admin.kubeconfig \
         kubeconfig/kube-controller-manager.kubeconfig \
         kubeconfig/kube-scheduler.kubeconfig \
