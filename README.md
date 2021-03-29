@@ -1,1 +1,1 @@
-# kubernetes-the-hard-way
+# Kubernetes The Hard Way on Raspberry Pi
