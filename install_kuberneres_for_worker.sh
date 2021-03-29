@@ -40,7 +40,7 @@ sudo mv crictl kubelet /usr/local/bin/
 
 rm crictl-v1.20.0-linux-arm64.tar.gz cni-plugins-linux-arm64-v0.9.1.tgz
 
-sudo apt -y install containerd runc
+sudo apt -y install containerd=1.3.3-0ubuntu2.3 runc=1.0.0~rc10-0ubuntu1
 
 
 wget -q --show-progress --https-only --timestamping \
