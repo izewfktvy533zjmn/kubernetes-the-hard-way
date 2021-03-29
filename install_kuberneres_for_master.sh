@@ -73,6 +73,8 @@ sudo mv \
     kube-apiserver-etcd-client-key.pem \
     kube-etcd-healthcheck-client-key.pem \
     kube-etcd-healthcheck-client.pem \
+    kube-etcd-flanneld-client.pem \
+    kube-etcd-flanneld-client-key.pem \
     /etc/etcd/
 
 
