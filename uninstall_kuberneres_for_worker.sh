@@ -38,7 +38,7 @@ sudo rm -rf \
     /var/lib/kubernetes/ \
     /etc/modules-load.d/containerd.conf \
     /etc/sysctl.d/99-kubernetes-cri.conf \
-    /etc/systemd/system/flannled.service \
+    /etc/systemd/system/flanneld.service \
     /etc/systemd/system/kubelet.service \
     /etc/systemd/system/kube-proxy.service \
     /usr/local/bin/crictl \
