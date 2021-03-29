@@ -1,5 +1,7 @@
 #!/bin/bash
 
+KUBERNETES_VERSION=v1.20.4
+
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
@@ -29,22 +31,29 @@ sudo mkdir -p \
 
 
 wget -q --show-progress --https-only --timestamping \
-  https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.20.0/crictl-v1.20.0-linux-arm64.tar.gz \
-  https://github.com/containernetworking/plugins/releases/download/v0.9.1/cni-plugins-linux-arm64-v0.9.1.tgz \
-  https://storage.googleapis.com/kubernetes-release/release/v1.20.4/bin/linux/arm64/kubelet
-
-tar -xvf crictl-v1.20.0-linux-arm64.tar.gz
+  https://github.com/containernetworking/plugins/releases/download/v0.9.1/cni-plugins-linux-arm64-v0.9.1.tgz
 sudo tar -xvf cni-plugins-linux-arm64-v0.9.1.tgz -C /opt/cni/bin/
-chmod +x crictl kubelet
-sudo mv crictl kubelet /usr/local/bin/
 
+
+wget -q --show-progress --https-only --timestamping \
+    https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.20.0/crictl-v1.20.0-linux-arm64.tar.gz
+tar -xvf crictl-v1.20.0-linux-arm64.tar.gz
+chmod +x crictl
+sudo mv crictl /usr/local/bin/
 rm crictl-v1.20.0-linux-arm64.tar.gz cni-plugins-linux-arm64-v0.9.1.tgz
+
 
 sudo apt -y install containerd=1.3.3-0ubuntu2.3 runc=1.0.0~rc10-0ubuntu1
 
 
 wget -q --show-progress --https-only --timestamping \
-   https://storage.googleapis.com/kubernetes-release/release/v1.20.4/bin/linux/arm64/kube-proxy
+    https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSIO}/bin/linux/arm64/kubelet
+chmod +x kubelet
+sudo mv kubelet /usr/local/bin/
+
+
+wget -q --show-progress --https-only --timestamping \
+   https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSIO}/bin/linux/arm64/kube-proxy
 chmod +x kube-proxy
 sudo mv kube-proxy /usr/local/bin/
 
@@ -53,8 +62,6 @@ wget https://github.com/flannel-io/flannel/releases/download/v0.13.0/flannel-v0.
 tar -zxvf flannel-v0.13.0-linux-arm64.tar.gz
 sudo mv flanneld /usr/local/bin/
 rm flannel-v0.13.0-linux-arm64.tar.gz README.md mk-docker-opts.sh
-
-
 
 
 sudo mv  \
@@ -111,8 +118,8 @@ sudo mv \
     10-flannel.conflist \
     /etc/cni/net.d/
 
-sudo systemctl enable flanneld.service
 
+sudo systemctl enable flanneld.service
 sudo systemctl restart flanneld.service
 
 
