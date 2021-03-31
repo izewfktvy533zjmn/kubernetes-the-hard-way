@@ -81,6 +81,7 @@ sudo mv \
 
 sudo mv \
     kubernetes-ca.pem \
+    kubernetes-front-proxy-ca.pem \
     /var/lib/kubernetes/
 
 sudo mv \
