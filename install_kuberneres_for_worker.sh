@@ -2,6 +2,11 @@
 
 KUBERNETES_VERSION=v1.20.4
 
+
+sudo apt update
+sudo apt -y install socat conntrack ipset
+
+
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
