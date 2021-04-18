@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KUBERNETES_VERSION=v1.20.4
+KUBERNETES_VERSION=v1.21.0
 
 
 sudo apt update

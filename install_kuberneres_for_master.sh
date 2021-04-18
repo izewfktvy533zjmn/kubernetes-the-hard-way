@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ETCD_VER=v3.4.14
-KUBERNETES_VERSION=v1.20.4
+KUBERNETES_VERSION=v1.21.0
 
 GOOGLE_URL=https://storage.googleapis.com/etcd
 GITHUB_URL=https://github.com/etcd-io/etcd/releases/download
